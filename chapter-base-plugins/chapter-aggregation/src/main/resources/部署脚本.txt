@@ -1,0 +1,38 @@
+Linux 服务器
+
+推荐 yum 安装基础环境
+
+比如安装 JDK：
+yum -y list java*
+yum -y install java-1.8.0-openjdk*
+java -version
+
+安装 Maven：
+yum -y list apache-maven
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+mvn --v
+
+Linux 使用 nohup 命令进行对后台程序的启动关闭。
+
+关闭应用的脚本：stop.sh
+#!/bin/bash
+PID=$(ps -ef | grep yourapp.jar | grep -v grep | awk '{pint $2}')
+if [-z "$PID"]
+then
+	echo  Application is already stopped
+else
+	echo kill $PID
+	kill $PID
+fi
+
+启动应用的脚本：start.sh
+#!/bin/bash
+nohup java -jar yourapp.jar  --server.port=8080 &
+
+重启应用的脚本：stop.sh
+#!/bin/bash
+echo stop application
+source stop.sh
+echo start application
+source start.sh
