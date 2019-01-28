@@ -47,4 +47,7 @@
         FROM user_info
         ORDER BY create_time DESC limit #{start},#{pageSize}
     </select>
+    <update id="updateById">
+        UPDATE user_info SET `name`=#{users.name},age=#{users.age},create_time=#{users.createTime} WHERE id = #{id}
+    </update>
 </mapper>

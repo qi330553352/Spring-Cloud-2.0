@@ -7,12 +7,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 创  建   时  间： 2019/1/28 22:09
@@ -31,4 +29,16 @@ public interface UsersApi {
     @ApiImplicitParam(name = "id", value = "用户文件对象ID", required = true, dataType = "Long")
     @ApiOperation(value="获得用户文件对象", notes="根据id获得用户文件对象",httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     Users findById(@PathVariable("id") Long id);
+
+    @GetMapping(value = "/findAll",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    List<Users> findAll();
+
+    @PostMapping("/save")
+    Long save(@RequestBody Users users);
+
+    @PutMapping("/updateById/{id}")
+    int updateById(@PathVariable("id") Long id,@RequestBody Users users);
+
+    @DeleteMapping("/deleteById/{id}")
+    int deleteById(@PathVariable("id") Long id);
 }

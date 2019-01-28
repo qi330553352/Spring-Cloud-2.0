@@ -23,4 +23,6 @@ public interface UsersMapper {
     List<Users> findAll();
 
     List<Users> findUsers(@Param("start") Integer start, @Param("pageSize")Integer pageSize);
+
+    int updateById(@Param("id")Long id, @Param("users")Users users);
 }

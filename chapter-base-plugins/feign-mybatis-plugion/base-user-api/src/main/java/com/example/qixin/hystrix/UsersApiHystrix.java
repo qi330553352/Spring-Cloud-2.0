@@ -6,6 +6,9 @@ import feign.hystrix.FallbackFactory;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 /**
  * 创  建   时  间： 2019/1/28 22:11
@@ -25,6 +28,26 @@ public class UsersApiHystrix implements FallbackFactory<UsersApi> {
             public Users findById(@PathVariable("id") Long id) {
 
                 return null;
+            }
+
+            @Override
+            public List<Users> findAll() {
+                return null;
+            }
+
+            @Override
+            public Long save(@RequestBody Users users) {
+                return null;
+            }
+
+            @Override
+            public int updateById(@PathVariable("id") Long id, @RequestBody Users users) {
+                return 0;
+            }
+
+            @Override
+            public int deleteById(@PathVariable("id") Long id) {
+                return 0;
             }
         };
     }
