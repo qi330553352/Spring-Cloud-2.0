@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.qixin.mapper.UsersMapper">
+    <resultMap id="BaseResultMap" type="com.example.qixin.entity.Users">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="BIGINT" property="age" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, age, create_time
+    </sql>
+    <sql id="Base_Column">
+        <trim suffix="" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null || name != ''">`name`,</if>
+            <if test="age != null || age != ''">age,</if>
+            <if test="createTime != null || createTime != ''">create_time,</if>
+        </trim>
+    </sql>
+    <sql id="Base_Value">
+        <trim suffix="" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null || name != ''">#{name},</if>
+            <if test="age != null || age != ''">#{age},</if>
+            <if test="createTime != null || createTime != ''">#{createTime},</if>
+        </trim>
+    </sql>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM user_info
+        WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long" >
+        DELETE FROM user_info WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.qixin.entity.Users" >
+        INSERT INTO user_info (<include refid="Base_Column"/> ) VALUES (<include refid="Base_Value"/> )
+    </insert>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM user_info
+    </select>
+    <select id="findUsers" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM user_info
+        ORDER BY create_time DESC limit #{start},#{pageSize}
+    </select>
+</mapper>
