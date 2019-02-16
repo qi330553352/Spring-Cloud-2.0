@@ -5,5 +5,5 @@
 	2.2、chapter-aggregation：Thymeleaf、聚合基础组件
 3、chapter-rabbitmq-plugins
 	3.1、rabbitmq-confirm-plugin：消息确认机制
-		3.1.1、confirm-provider-plugin：生产者消息确认机制
-		3.1.2、confirm-consumer-plugin：消费者消息确认机制
+		3.1.1、confirm-provider-plugin：生产者消息发布确认机制
+		3.1.2、confirm-consumer-plugin：消费者消息消费确认机制（多个消费者消费同一任务：公平调度）

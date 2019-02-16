@@ -19,9 +19,20 @@ import java.io.IOException;
 public class ConsumerService {
 
     @RabbitListener(queues = "qixin-queue-test-1")
-    public void process(Message message, Channel channel) throws IOException {
-        // 采用手动应答模式, 手动确认应答更为安全稳定
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
-        log.info("receive: " + new String(message.getBody()));
+    public void process(Message message, Channel channel) throws IOException, InterruptedException {
+        // 采用手动应答模式, 手动确认应答更为安全稳定;第二个参数multiple表示是否批量应答，很明显现在不是批量应答
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        channel.basicAck(deliveryTag, false);
+        channel.basicQos(1);//该消费者在接收到队列里的消息但没有返回确认结果之前,它不会将新的消息分发给它。
+        Thread.sleep(1000L);
+        log.info(deliveryTag+":1receive1: " + new String(message.getBody()));
+    }
+
+    @RabbitListener(queues = "qixin-queue-test-1")
+    public void process2(Message message, Channel channel) throws IOException {
+        // 采用手动应答模式, 手动确认应答更为安全稳定;第二个参数multiple表示是否批量应答，很明显现在不是批量应答
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        channel.basicAck(deliveryTag, false);
+        log.info(deliveryTag+":2receive2: " + new String(message.getBody()));
     }
 }
