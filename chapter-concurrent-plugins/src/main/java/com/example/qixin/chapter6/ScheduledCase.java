@@ -44,9 +44,5 @@ public class ScheduledCase {
         // 固定时间间隔执行的任务,虽然抛出了异常,但被捕捉了,next周期继续运行
         schedule.scheduleAtFixedRate(new ScheduleWorker(ScheduleWorker.ProcessException),
                 1000, 3000, TimeUnit.MILLISECONDS);
-
-
-
-
     }
 }

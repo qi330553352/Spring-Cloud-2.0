@@ -16,8 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class UseThreadPool {
 
-    static class Worker implements Runnable
-    {
+    static class Worker implements Runnable{
         private String taskName;
         private Random r = new Random();
 
@@ -31,23 +30,20 @@ public class UseThreadPool {
 
         @Override
         public void run(){
-            System.out.println(Thread.currentThread().getName()
-                    +" process the task : " + taskName);
+            System.out.println(Thread.currentThread().getName()+" process the task : " + taskName);
             SleepTools.ms(r.nextInt(100)*5);
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         ExecutorService threadPool = new ThreadPoolExecutor(2, 4, 3,
-                TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10),
+                TimeUnit.SECONDS, new ArrayBlockingQueue<>(10),
                 new ThreadPoolExecutor.DiscardOldestPolicy());
         //ExecutorService cachePool = Executors.newCachedThreadPool();
         //ExecutorService fixPool = Executors.newFixedThreadPool(2);
         //ExecutorService singlePool = Executors.newSingleThreadExecutor();
         //ExecutorService forkjoinPool = Executors.newWorkStealingPool();
-        for (int i = 0; i <= 6; i++)
-        {
+        for (int i = 0; i <= 6; i++){
             Worker worker = new Worker("worker " + i);
             System.out.println("A new task has been added : " + worker.getName());
             threadPool.execute(worker);
