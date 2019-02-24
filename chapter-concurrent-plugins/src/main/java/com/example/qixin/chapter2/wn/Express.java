@@ -36,8 +36,7 @@ public class Express {
         while(this.km<=100){//公里数小于100不做处理
             try {
                 wait();
-                System.out.println("Check Km thread["+Thread.currentThread().getId()
-                        +"] is be notified");
+                System.out.println("Check Km thread["+Thread.currentThread().getId()+"] is be notified");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -49,8 +48,7 @@ public class Express {
         while(this.site.equals(CITY)){//快递到达目的地
             try {
                 wait();
-                System.out.println("Check Site thread["+Thread.currentThread().getId()
-                        +"] is be notified");
+                System.out.println("Check Site thread["+Thread.currentThread().getId()+"] is be notified");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -2,7 +2,7 @@ package com.example.qixin.chapter2;
 
 import com.example.qixin.tools.SleepTools;
 
-/**
+/** 演示Join（）方法的使用
  * 创  建   时  间： 2019/2/19 22:36
  * 版           本: V1.0
  * 作           者: qixin
@@ -18,7 +18,7 @@ public class UseJoin {
         @Override
         public void run() {
             try {
-                thread.join(); //调用传入线程的join方法，必须等这个方法返回后，当前线程才能继续执行
+                thread.join(); //调用传入线程的join方法，必须等这个(传入的)方法返回后，当前线程才能继续执行
             } catch (InterruptedException ignored) {
             }
             System.out.println(Thread.currentThread().getName() + " terminate.");
@@ -35,6 +35,6 @@ public class UseJoin {
             previous = thread;
         }
         SleepTools.second(2);//让主线程休眠2秒
-        System.out.println(Thread.currentThread().getName() + " terminate.");
+        System.out.println(Thread.currentThread().getName() + " terminate. <<<");
     }
 }
