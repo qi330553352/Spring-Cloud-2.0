@@ -28,12 +28,9 @@ public class UseFuture {
         }
     }
 
-    public static void main(String[] args)
-            throws InterruptedException, ExecutionException {
-
+    public static void main(String[] args)throws InterruptedException, ExecutionException {
         UseCallable useCallable = new UseCallable();
-        FutureTask<Integer> futureTask //用FutureTask包装Callable
-                = new FutureTask<>(useCallable);
+        FutureTask<Integer> futureTask = new FutureTask<>(useCallable); //用FutureTask包装Callable
         new Thread(futureTask).start();//交给Thread去运行
         Random r = new Random();
         Thread.sleep(1000);
@@ -43,6 +40,5 @@ public class UseFuture {
             System.out.println("中断计算。  ");
             futureTask.cancel(true);
         }
-
     }
 }

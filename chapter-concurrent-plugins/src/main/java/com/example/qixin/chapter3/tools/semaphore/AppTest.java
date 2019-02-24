@@ -22,8 +22,7 @@ public class AppTest {
             long start = System.currentTimeMillis();
             try {
                 Connection connect = dbPool.takeConnect();
-                System.out.println("Thread_"+Thread.currentThread().getId()
-                        +"_获取数据库连接共耗时【"+(System.currentTimeMillis()-start)+"】ms.");
+                System.out.println("Thread_"+Thread.currentThread().getId()+"_获取数据库连接共耗时【"+(System.currentTimeMillis()-start)+"】ms.");
                 SleepTools.ms(100+r.nextInt(100));//模拟业务操作，线程持有连接查询数据
                 System.out.println("查询数据完成，归还连接！");
                 dbPool.returnConnect(connect);

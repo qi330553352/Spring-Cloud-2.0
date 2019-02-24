@@ -15,15 +15,13 @@ import java.util.concurrent.CyclicBarrier;
 public class UseCyclicBarrier {
 
     private static CyclicBarrier barrier = new CyclicBarrier(5, new CollectThread());
-    private static ConcurrentHashMap<String,Long> resultMap
-            = new ConcurrentHashMap<>();//存放子线程工作结果的容器
+    private static ConcurrentHashMap<String,Long> resultMap = new ConcurrentHashMap<>();//存放子线程工作结果的容器
 
     public static void main(String[] args) {
         for(int i=0;i<=4;i++){
             Thread thread = new Thread(new SubThread());
             thread.start();
         }
-
     }
 
     private static class CollectThread implements Runnable{
