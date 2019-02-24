@@ -23,7 +23,7 @@ public class StopThread {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         UseThread useThread = new UseThread();
         useThread.start();
-        useThread.stop();
+        useThread.stop();//强制终结线程，无法保证这线程资源被正常释放；
     }
 
 

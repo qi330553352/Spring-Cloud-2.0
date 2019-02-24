@@ -25,10 +25,9 @@ public class DaemonThread {
         }
     }
 
-    public static void main(String[] args)
-            throws InterruptedException, ExecutionException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         UseThread useThread = new UseThread();
-        //useThread.setDaemon(true);
+        useThread.setDaemon(true); //设置为守护线程  （注意一定要在start之前）
         useThread.start();
         Thread.sleep(5);
         useThread.interrupt();
