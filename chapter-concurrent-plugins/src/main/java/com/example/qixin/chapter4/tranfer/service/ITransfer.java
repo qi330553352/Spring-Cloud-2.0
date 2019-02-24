@@ -10,7 +10,6 @@ import com.example.qixin.chapter4.tranfer.UserAccount;
  */
 public interface ITransfer {
 
-    void transfer(UserAccount from, UserAccount to, int amount)
-            throws InterruptedException;
+    void transfer(UserAccount from, UserAccount to, int amount)throws InterruptedException;
 
 }

@@ -13,9 +13,7 @@ public class SafeOperate implements ITransfer {
     private static Object tieLock = new Object();
 
     @Override
-    public void transfer(UserAccount from, UserAccount to, int amount)
-            throws InterruptedException {
-
+    public void transfer(UserAccount from, UserAccount to, int amount)throws InterruptedException {
         int fromHash = System.identityHashCode(from);
         int toHash = System.identityHashCode(to);
 

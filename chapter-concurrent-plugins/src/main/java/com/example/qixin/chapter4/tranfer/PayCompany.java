@@ -20,8 +20,7 @@ public class PayCompany {
         private int amount;
         private ITransfer transfer;
 
-        public TransferThread(String name, UserAccount from, UserAccount to,
-                              int amount, ITransfer transfer) {
+        public TransferThread(String name, UserAccount from, UserAccount to,int amount, ITransfer transfer) {
             this.name = name;
             this.from = from;
             this.to = to;
@@ -46,10 +45,8 @@ public class PayCompany {
         UserAccount zhangsan = new UserAccount("zhangsan",20000);
         UserAccount lisi = new UserAccount("lisi",20000);
         ITransfer transfer = new SafeOperateToo();
-        TransferThread zhangsanToLisi = new TransferThread("zhangsanToLisi"
-                ,zhangsan,lisi,2000,transfer);
-        TransferThread lisiToZhangsan = new TransferThread("lisiToZhangsan"
-                ,lisi,zhangsan,4000,transfer);
+        TransferThread zhangsanToLisi = new TransferThread("zhangsanToLisi",zhangsan,lisi,2000,transfer);
+        TransferThread lisiToZhangsan = new TransferThread("lisiToZhangsan",lisi,zhangsan,4000,transfer);
         zhangsanToLisi.start();
         lisiToZhangsan.start();
 
