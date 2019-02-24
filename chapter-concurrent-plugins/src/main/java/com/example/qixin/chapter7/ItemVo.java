@@ -16,8 +16,7 @@ public class ItemVo<T> implements Delayed {
 
     public ItemVo(long activeTime, T data) {
         super();
-        this.activeTime = TimeUnit.NANOSECONDS.convert(activeTime,
-                TimeUnit.MILLISECONDS) + System.nanoTime();;
+        this.activeTime = TimeUnit.NANOSECONDS.convert(activeTime,TimeUnit.MILLISECONDS) + System.nanoTime();;
         this.data = data;
     }
 

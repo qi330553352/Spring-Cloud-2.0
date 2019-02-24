@@ -20,15 +20,13 @@ public class PutOrder implements Runnable {
     public void run() {
         //5秒后超时
         Order orderTb = new Order("TB123456789",300);
-        ItemVo<Order> itemTb = new ItemVo<Order>(5000,orderTb);
+        ItemVo<Order> itemTb = new ItemVo<>(5000,orderTb);
         queue.offer(itemTb);
-        System.out.println("PutOrder5秒后超时："+orderTb.getOrderNo()+":"
-                +orderTb.getOrderMoney());
+        System.out.println("PutOrder5秒后超时："+orderTb.getOrderNo()+":"+orderTb.getOrderMoney());
         //3秒后超时
         Order orderJd = new Order("JD987654321",289);
-        ItemVo<Order> itemJd = new ItemVo<Order>(3000,orderJd);
+        ItemVo<Order> itemJd = new ItemVo<>(3000,orderJd);
         queue.offer(itemJd);
         System.out.println("PutOrder3秒后超时："+orderJd.getOrderNo()+":"+orderJd.getOrderMoney());
-
     }
 }

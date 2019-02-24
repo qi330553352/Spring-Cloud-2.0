@@ -22,8 +22,7 @@ public class FetchOrder implements Runnable {
             try {
                 ItemVo<Order> item = queue.take();
                 Order order = (Order)item.getData();
-                System.out.println("GetFromQueue："
-                        +" data = "+order.getOrderNo()+"-"+order.getOrderMoney());
+                System.out.println("GetFromQueue："+" data = "+order.getOrderNo()+"-"+order.getOrderMoney());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
