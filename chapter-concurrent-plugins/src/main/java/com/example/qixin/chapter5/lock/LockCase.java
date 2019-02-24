@@ -15,9 +15,7 @@ public class LockCase {
     private int age = 100000;//初始100000
 
     private static class TestThread extends Thread{
-
         private LockCase lockCase;
-
         public TestThread(LockCase lockCase,String name) {
             super(name);
 //            this.lockCase = lockCase;
@@ -28,8 +26,7 @@ public class LockCase {
             for(int i=0;i<100000;i++) {//递增100000
                 lockCase.test();
             }
-            System.out.println(Thread.currentThread().getName()
-                    +" age =  "+lockCase.getAge());
+            System.out.println(Thread.currentThread().getName()+" age =  "+lockCase.getAge());
         }
     }
 
@@ -64,8 +61,6 @@ public class LockCase {
         for(int i=0;i<100000;i++) {//递减100000
             lockCase.test2();
         }
-        System.out.println(Thread.currentThread().getName()
-                +" age =  "+lockCase.getAge());
-
+        System.out.println(Thread.currentThread().getName()+" age =  "+lockCase.getAge());
     }
 }

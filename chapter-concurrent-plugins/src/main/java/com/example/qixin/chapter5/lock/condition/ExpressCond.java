@@ -56,8 +56,7 @@ public class ExpressCond {
             while(this.km<=100){//公里数小于100不做处理
                 try {
                     kmCond.await();
-                    System.out.println("Check Km thread["
-                            +Thread.currentThread().getId()+"] is be signal");
+                    System.out.println("Check Km thread["+Thread.currentThread().getId()+"] is be signal");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -74,8 +73,7 @@ public class ExpressCond {
             while(this.site.equals(CITY)){//快递到达目的地
                 try {
                     siteCond.await();
-                    System.out.println("Check Site thread["
-                            +Thread.currentThread().getId()+"] is be signal");
+                    System.out.println("Check Site thread["+Thread.currentThread().getId()+"] is be signal");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

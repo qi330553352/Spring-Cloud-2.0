@@ -10,32 +10,25 @@ import java.util.concurrent.atomic.AtomicStampedReference;
  */
 public class UseAtomicStampedReference {
 
-    static AtomicStampedReference<String> asr =
-            new AtomicStampedReference("mark", 0);
+    static AtomicStampedReference<String> asr = new AtomicStampedReference("mark", 0);
 
     public static void main(String[] args) throws InterruptedException {
         final int oldStamp = asr.getStamp();//拿初始版本0
         final String oldReference = asr.getReference();//初始值
         System.out.println(oldReference+"============"+oldStamp);
-        Thread rightStampThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName()+":当前变量值："
-                        +oldReference + "-当前版本戳：" + oldStamp + "-"
-                        + asr.compareAndSet(oldReference,
-                        oldReference + "+Java", oldStamp, oldStamp + 1));
-            }
+        Thread rightStampThread = new Thread(() -> {
+            System.out.println(Thread.currentThread().getName()+":当前变量值："
+                    +oldReference + "-当前版本戳：" + oldStamp + "-"
+                    + asr.compareAndSet(oldReference,
+                    oldReference + "+Java", oldStamp, oldStamp + 1));
         });
 
-        Thread errorStampThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String reference = asr.getReference();//变量的最新值
-                System.out.println(Thread.currentThread().getName()+":当前变量值："
-                        +reference + "-当前版本戳：" + asr.getStamp() + "-"
-                        + asr.compareAndSet(reference,
-                        reference + "+C", oldStamp, oldStamp + 1));
-            }
+        Thread errorStampThread = new Thread(() -> {
+            String reference = asr.getReference();//变量的最新值
+            System.out.println(Thread.currentThread().getName()+":当前变量值："
+                    +reference + "-当前版本戳：" + asr.getStamp() + "-"
+                    + asr.compareAndSet(reference,
+                    reference + "+C", oldStamp, oldStamp + 1));
         });
         rightStampThread.start();
         rightStampThread.join();

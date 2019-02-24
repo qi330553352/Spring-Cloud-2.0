@@ -8,7 +8,7 @@ package com.example.qixin.chapter5.lock.rw;
  */
 public interface GoodsService {
 
-    public GoodsInfo getNum();
-    public void setNum(int number);
+    GoodsInfo getNum();
+    void setNum(int number);
 
 }

@@ -9,8 +9,9 @@ import java.util.concurrent.atomic.AtomicReference;
  * 版  权   所  有: 版权所有(C)2016-2026
  */
 public class UseAtomicReference {
-    public static AtomicReference<UserInfo> atomicUserRef = new
-            AtomicReference<UserInfo>();//原子引用类型的实例
+
+    public static AtomicReference<UserInfo> atomicUserRef = new AtomicReference<>();//原子引用类型的实例
+
     public static void main(String[] args) {
         UserInfo user = new UserInfo("Mark", 15);//要修改的实体的实例
         atomicUserRef.set(user);//用原子引用类型包装
