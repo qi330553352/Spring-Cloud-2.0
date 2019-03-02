@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="first ant example" default="firstExample">
+    <target name="firstExample">
+        <echo message="这是一个简单的Ant实例"></echo>
+        <echo message="操作系统为:${os.name}"></echo>
+        <echo message="根目录为:${basedir}"></echo>
+        <echo message="ant文件的信息:${ant.file}"></echo>
+        <echo message="ant的版本:${ant.version}"></echo>
+        <echo message="项目的名称:${ant.project.name}"></echo>
+        <echo message="Java的版本:${ant.java.version}"></echo>
+    </target>
+</project>
