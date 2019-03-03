@@ -102,7 +102,7 @@
             <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss"/>
             <format property="TIME" pattern="yyMMddHHmm"/>
         </tstamp>
-        <replace file="src/main/resources/config/jdbc.properties" token="localhost" value="127.0.0.1"/>
+        <replace file="target/ant/classes/config/jdbc.properties" token="localhost" value="127.0.0.1"/>
         <!-- 生成Web配置及部署文件 -->
         <war destfile="${dist.dir}/${version}/${project}.v${TIME}.war"
              webxml="${web.root}/WEB-INF/web.xml" manifest="${web.root}/META-INF/MANIFEST.MF">
