@@ -7,3 +7,7 @@
 	3.1、rabbitmq-confirm-plugin：消息确认机制
 		3.1.1、confirm-provider-plugin：生产者消息发布确认机制
 		3.1.2、confirm-consumer-plugin：消费者消息消费确认机制（多个消费者消费同一任务：公平调度）
+4、chapter-concurrent-plugins：Java并发编程
+5、chapter-ant-plugins：ant打包
+	5.1、ant-mysql-plugin：springmvc+mybatis+jsp+ant 
+
