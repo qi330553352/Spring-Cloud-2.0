@@ -1,12 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="first ant example" default="firstExample">
-    <target name="firstExample">
-        <echo message="这是一个简单的Ant实例"></echo>
-        <echo message="操作系统为:${os.name}"></echo>
-        <echo message="根目录为:${basedir}"></echo>
-        <echo message="ant文件的信息:${ant.file}"></echo>
-        <echo message="ant的版本:${ant.version}"></echo>
-        <echo message="项目的名称:${ant.project.name}"></echo>
-        <echo message="Java的版本:${ant.java.version}"></echo>
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" name="ant" default="0 - default" basedir=".">
+    <description>Builds, tests, and runs the project dsolrcloud.</description>
+    <!-- 配置开发环境 -->
+    <property environment="env"/>
+    <property name="version" value="1.0"/>
+    <property name="project" value="fisherCoffeeFront"/>
+    <property name="package" value="fisherCoffeeFront"/>
+    <property name="domain" value="net"/>
+    <!-- 项目源代码目录 -->
+    <property name="src.dir" location="src/main/java"/>
+    <!-- javac编译后生成的class文件路径 -->
+    <property name="build.dir" location="target/ant/classes" />
+    <!-- 最终生成war包的路径 -->
+    <property name="dist.dir" location="target/dist"/>
+    <!-- 项目配置文件路径 -->
+    <property name="config.dir" location="src/main/resources" />
+    <!-- 项目生成JavaDoc文件路径  -->
+    <property name="doc.dir" location="target/ant/javadoc"/>
+    <!-- 项目web页面路径 -->
+    <property name="web.root" location="src/main/webapp" />
+    <!-- maven-ant-tasks 下载maven依赖jar包的存放路径  -->
+    <property name="lib.dir" location="target/dependency"/>
+    <!-- 项目测试文件路径 -->
+    <property name="test.dir" location="src/test/java"/>
+    <!-- 配置本地Tomcat路径的lib目录 -->
+    <property name="tomcat.lib.dir" location="D:/softwear/apache-tomcat-8.5.5/lib" />
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <target name="1 - clean" description="清理ant编译文件">
+        <delete dir="target" />
+    </target>
+
+    <target name="2 - makedir" description="建立文件夹">
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${test.dir}"/>
+    </target>
+
+    <target name="3 - dependency" depends="2 - makedir" description="配置 ant 自动下载maven的依赖包 end ">
+        <!-- 引入tomcat的jar包-->
+        <copydir src="${tomcat.lib.dir}" dest="${lib.dir}" />
+        <!-- 下载maven依赖-->
+        <path id="maven-ant-tasks.classpath" path="${basedir}/src/main/webapp/WEB-INF/lib/maven-ant-tasks-2.1.3.jar" />
+        <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
+
+        <artifact:dependencies filesetId="mavenlib" pathId="mavenclasspath" useScope="runtime">
+            <pom file="pom.xml" />
+        </artifact:dependencies>
+
+        <copy todir="${lib.dir}">
+            <fileset refid="mavenlib" />
+            <mapper type="flatten" />
+        </copy>
+    </target>
+
+
+    <target name="4 - compile" depends="3 - dependency" description="编译代码">
+        <!-- 编译所有的Java代码 -->
+        <javac srcdir="${src.dir}"
+               destdir="${build.dir}"
+               encoding="UTF-8"
+               includeantruntime="no"
+               excludes="**/test/*,**/test/bean/*,**/*.svn,*.svn"
+               includes="**/*.java"
+               source="1.8"
+               target="1.8"
+               deprecation="true"
+               failonerror="true"
+               debug="true">
+            <classpath refid="classpath" />
+        </javac>
+
+        <!-- 把所有文件copy到build目录 -->
+        <copy todir="${build.dir}">
+            <fileset dir="${config.dir}" includes="**/*"/>
+        </copy>
+    </target>
+
+    <!-- 生成Javadoc 文档 -->
+    <target name="6 - javadoc" description="生成Javadoc文档">
+        <delete dir="${doc.dir}"/>
+        <mkdir dir="${doc.dir}"/>
+        <javadoc packagenames="com.qixin.*" sourcepath="${src.dir}" destdir="${doc.dir}"
+                 windowtitle="${project} Javadoc" use="yes"
+                 linksource="no" splitindex="yes" encoding="UTF-8"
+                 docencoding="GBK" locale="zh_CN">
+            <classpath refid="classpath"/>
+            <packageset dir="${src.dir}" defaultexcludes="yes">
+                <include name="${domain}/${package}/**"/>
+            </packageset>
+        </javadoc>
+    </target>
+
+    <target name="5 - package" depends="4 - compile" description="打war包" >
+        <mkdir dir="${dist.dir}/${version}" />
+        <tstamp>
+            <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss"/>
+            <format property="TIME" pattern="yyMMddHHmm"/>
+        </tstamp>
+        <replace file="src/main/resources/config/jdbc.properties" token="localhost" value="127.0.0.1"/>
+        <!-- 生成Web配置及部署文件 -->
+        <war destfile="${dist.dir}/${version}/${project}.v${TIME}.war"
+             webxml="${web.root}/WEB-INF/web.xml" manifest="${web.root}/META-INF/MANIFEST.MF">
+            <fileset dir="${web.root}" excludes="${web.root}/WEB-INF/classes/*" />
+            <classes dir="${build.dir}" />
+            <lib dir="${lib.dir}" includes="**/*.jar" />
+        </war>
+    </target>
+    <target name="0 - default" depends="1 - clean, 5 - package, 6 - javadoc">
     </target>
 </project>

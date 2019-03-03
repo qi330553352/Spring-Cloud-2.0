@@ -2,7 +2,6 @@ package com.qixin.example.controller;
 
 import com.qixin.example.entity.User;
 import com.qixin.example.service.UserService;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import java.util.List;
  * 作           者: qixin
  * 版  权   所  有: 版权所有(C)2016-2026
  */
-@Log4j2
 @Controller
 @RequestMapping("/user")
 public class UserController {
