@@ -4,14 +4,12 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
     <display-name>ant-mysql-plugin</display-name>
-    <!-- 添加对spring的支持 -->
+    <!-- 配置spring IoC配置文件路径 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
-
-
-    <!-- 定义Spring监听器，加载Spring -->
+    <!--配置ContextLoaderListener 用以初始化Spring IoC容器 ⚠️如果不在此处注册，则在DispatcherServlet初始化的时候会对它进行初始化，建议ioc先于DispatcherServlet进行初始化 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

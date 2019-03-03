@@ -20,7 +20,8 @@ public class UserService {
     private UserMapper userMapper;
 
     public List<User> findUsers() {
-
-        return userMapper.findUsers();
+        List<User> list = userMapper.findUsers();
+        list.parallelStream().forEach(System.out::println);
+        return list;
     }
 }

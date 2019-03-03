@@ -6,12 +6,18 @@
         <result property="name" column="name" />
         <result property="birthday" column="birthday" />
         <result property="createTime" column="create_time" />
+        <result property="address.id" column="address_id" />
+
+        <result property="address.province" column="province" />
+        <result property="address.city" column="city" />
+        <result property="address.area" column="area" />
+        <result property="address.zipCode" column="zip_code" />
     </resultMap>
 
     <select id="findUsers" resultMap="UserMapper">
         SELECT id,`name`,birthday,create_time FROM `user`
     </select>
-    <insert id="save">
-        INSERT INTO `user` (`name`,birthday,create_time) VALUES (3,'lisi','123456');
-    </insert>
+    <select id="findById" resultMap="UserMapper" parameterType="java.lang.Long">
+        SELECT id,`name`,birthday,create_time FROM `user` WHERE id = ${id}
+    </select>
 </mapper>

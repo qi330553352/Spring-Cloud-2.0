@@ -1,6 +1,8 @@
 package com.qixin.example.mapper;
 
 import com.qixin.example.entity.User;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,7 +12,10 @@ import java.util.List;
  * 作           者: qixin
  * 版  权   所  有: 版权所有(C)2016-2026
  */
+@Repository
 public interface UserMapper {
 
     List<User> findUsers();
+
+    User findById(@Param("id") Long id);
 }
