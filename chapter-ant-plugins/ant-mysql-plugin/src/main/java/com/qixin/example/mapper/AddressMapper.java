@@ -1,5 +1,7 @@
 package com.qixin.example.mapper;
 
+import com.qixin.example.entity.Address;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,4 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AddressMapper {
+
+    Address findById(@Param("id")Long id);
 }

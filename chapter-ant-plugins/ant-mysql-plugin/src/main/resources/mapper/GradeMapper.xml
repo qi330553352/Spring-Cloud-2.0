@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qixin.example.mapper.GradeMapper">
+    <resultMap id="GradeMapper" type="com.qixin.example.entity.Grade">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <collection property="users" column="grade_id" select="findUsersByGradeId"/>
+    </resultMap>
+
+    <resultMap id="UserMapper" type="com.qixin.example.entity.User">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="birthday" column="birthday" />
+        <result property="createTime" column="create_time" />
+        <result property="address.id" column="address_id" />
+
+        <result property="address.province" column="province" />
+        <result property="address.city" column="city" />
+        <result property="address.area" column="area" />
+        <result property="address.zipCode" column="zip_code" />
+    </resultMap>
+
+    <select id="findById" resultMap="GradeMapper" parameterType="java.lang.Long">
+        SELECT a.`id`,a.`name`,a.`id` AS grade_id FROM grade a WHERE a.`id` = ${id}
+    </select>
+    <select id="findUsersByGradeId" resultMap="UserMapper" parameterType="java.lang.Long">
+        SELECT a.`id`,a.`name` AS `name`,a.`address` AS address,a.`birthday` AS birthday,
+        a.`create_time` AS createTime,a.`address_id`,b.`province`,b.`city`,b.`area`,b.`zip_code`
+        FROM `user` a LEFT JOIN address b ON a.`address_id`=b.`id`
+        WHERE a.`grade_id` = #{id}
+    </select>
+</mapper>

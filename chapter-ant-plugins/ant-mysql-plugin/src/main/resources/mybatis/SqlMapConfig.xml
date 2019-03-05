@@ -29,7 +29,7 @@
         <!-- 允许在嵌套语句中使用分页（RowBounds） -->
         <setting name="safeRowBoundsEnabled" value="false" />
         <!-- 是否开启自动驼峰命名规则，即从a_example到aExample的映射 -->
-        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <!--<setting name="mapUnderscoreToCamelCase" value="true" />-->
         <!-- 本地缓存机制，防止循环引用和加速重复嵌套循环 -->
         <setting name="localCacheScope" value="SESSION" />
         <!-- 当没有为参数提供特定JDBC类型时，为空值指定JDBC类型。某些驱动需要指定列的JDBC类型，多数情况直接用一般类型即可，如NULL/VARCHAR/OTHER -->

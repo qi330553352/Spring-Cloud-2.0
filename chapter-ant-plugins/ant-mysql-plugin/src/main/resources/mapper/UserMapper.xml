@@ -13,11 +13,35 @@
         <result property="address.area" column="area" />
         <result property="address.zipCode" column="zip_code" />
     </resultMap>
-
+    <resultMap id="UserWithAddressResultMapper" type="com.qixin.example.entity.User">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="birthday" column="birthday" />
+        <result property="createTime" column="create_time" />
+        <association property="address" resultMap="AddressResultMapper"/>
+    </resultMap>
+    <resultMap id="AddressResultMapper" type="com.qixin.example.entity.Address">
+        <id property="id" column="address_id"/>
+        <result property="province" column="province" />
+        <result property="city" column="city" />
+        <result property="area" column="area" />
+        <result property="zipCode" column="zip_code" />
+    </resultMap>
     <select id="findUsers" resultMap="UserMapper">
         SELECT id,`name`,birthday,create_time FROM `user`
     </select>
+
+    <!-- 一对一映射1:使用点符号和嵌套对象 -->
     <select id="findById" resultMap="UserMapper" parameterType="java.lang.Long">
-        SELECT id,`name`,birthday,create_time FROM `user` WHERE id = ${id}
+        SELECT a.`id` AS id,a.`name` AS `name`,a.`address` AS address,a.`birthday` AS birthday,
+            a.`create_time` AS createTime,a.`address_id`,b.`province`,b.`city`,b.`area`,b.`zip_code`
+        FROM `user` a LEFT JOIN address b ON a.`address_id`=b.`id`
+        WHERE a.`id` = ${id}
+    </select>
+    <select id="findUserWithAddressById" resultMap="UserWithAddressResultMapper" parameterType="java.lang.Long">
+        SELECT a.`id` AS id,a.`name` AS `name`,a.`address` AS address,a.`birthday` AS birthday,
+            a.`create_time` AS createTime,a.`address_id`,b.`province`,b.`city`,b.`area`,b.`zip_code`
+        FROM `user` a LEFT JOIN address b ON a.`address_id`=b.`id`
+        WHERE a.`id` = ${id}
     </select>
 </mapper>

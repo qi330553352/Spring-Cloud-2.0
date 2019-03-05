@@ -8,4 +8,8 @@
         <result property="area" column="area" />
         <result property="zipCode" column="zip_code" />
     </resultMap>
+
+    <select id="findById" resultMap="AddressMapper" parameterType="java.lang.Long">
+        SELECT a.`id`,a.`province`,a.`city`,a.`area`,a.`zip_code` FROM address a WHERE a.`id` = ${id}
+    </select>
 </mapper>

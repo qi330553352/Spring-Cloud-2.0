@@ -24,4 +24,14 @@ public class UserService {
         list.parallelStream().forEach(System.out::println);
         return list;
     }
+
+    public User findById(long id) {
+
+        return userMapper.findById(id);
+    }
+
+    public User findUserWithAddressById(long id) {
+
+        return userMapper.findUserWithAddressById(id);
+    }
 }

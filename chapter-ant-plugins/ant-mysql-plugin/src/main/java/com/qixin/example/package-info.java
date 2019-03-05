@@ -24,4 +24,8 @@ package com.qixin.example;
  *      5.1、注解配置
  *      5.2、xml文件配置
  *  六、一对一映射
+ *      6.1、使用点符号和嵌套对象
+ *      6.2、使用嵌套ResultMap
+ *  七、一对多映射
+ *      7.1、使用嵌套collection + select
  */
