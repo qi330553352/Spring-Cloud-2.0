@@ -12,4 +12,28 @@
     <select id="findById" resultMap="AddressMapper" parameterType="java.lang.Long">
         SELECT a.`id`,a.`province`,a.`city`,a.`area`,a.`zip_code` FROM address a WHERE a.`id` = ${id}
     </select>
+
+    <insert id="saves" parameterType="java.util.List">
+        INSERT INTO address (`province`,`city`,`area`,`zip_code`) VALUES
+        <foreach collection="list" index="idx" item="obj" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <choose>
+                    <when test="obj.province != null and obj.province !=''">#{obj.province},</when>
+                    <otherwise>'',</otherwise>
+                </choose>
+                <choose>
+                    <when test="obj.city != null and obj.city !=''">#{obj.city},</when>
+                    <otherwise>'',</otherwise>
+                </choose>
+                <choose>
+                    <when test="obj.area != null and obj.area !=''">#{obj.area},</when>
+                    <otherwise>'',</otherwise>
+                </choose>
+                <choose>
+                    <when test="obj.zipCode != null and obj.zipCode !=''">#{obj.zipCode},</when>
+                    <otherwise>'',</otherwise>
+                </choose>
+            </trim>
+        </foreach>
+    </insert>
 </mapper>

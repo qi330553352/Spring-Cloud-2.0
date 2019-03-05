@@ -4,6 +4,8 @@ import com.qixin.example.entity.Address;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 创  建   时  间： 2019/3/3 23:04
  * 版           本: V1.0
@@ -14,4 +16,6 @@ import org.springframework.stereotype.Repository;
 public interface AddressMapper {
 
     Address findById(@Param("id")Long id);
+
+    int saves(@Param("list")List<Address> list);
 }

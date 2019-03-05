@@ -28,4 +28,11 @@ package com.qixin.example;
  *      6.2、使用嵌套ResultMap
  *  七、一对多映射
  *      7.1、使用嵌套collection + select
+ *  八、动态sql
+ *      8.1、if 条件
+ *      8.2、choose，when 和otherwise 条件
+ *      8.3、where 条件
+ *      8.4、trim 条件
+ *      8.5、foreach 循环
+ *      8.6、set 条件
  */

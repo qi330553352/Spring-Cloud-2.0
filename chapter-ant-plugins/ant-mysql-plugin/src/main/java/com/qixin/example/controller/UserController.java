@@ -1,7 +1,9 @@
 package com.qixin.example.controller;
 
+import com.qixin.example.entity.Address;
 import com.qixin.example.entity.Grade;
 import com.qixin.example.entity.User;
+import com.qixin.example.service.AddressService;
 import com.qixin.example.service.GradeService;
 import com.qixin.example.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,12 +31,24 @@ public class UserController {
     private UserService userService;
     @Autowired
     private GradeService gradeService;
+    @Autowired
+    private AddressService addressService;
 
     @ResponseBody
     @RequestMapping(value = "/findUsers")
     public List<User> findUsers() {
         Grade grade = gradeService.findById(1L);
         log.info(grade);
+        List<Address> addresses = new ArrayList<>();
+        for(int i=0;i<3;i++){
+            Address address = new Address();
+            address.setProvince("a"+i);
+            address.setCity("b"+i);
+            address.setArea("c"+i);
+            address.setZipCode("abc"+i);
+            addresses.add(address);
+        }
+        addressService.saves(addresses);
         List<User> list = userService.findUsers();
         return list;
     }
