@@ -11,4 +11,5 @@
 4、chapter-concurrent-plugins：Java并发编程 
 5、chapter-ant-plugins：ant打包 
 	5.1、ant-mysql-plugin：springmvc+mybatis+jsp+ant
+6、chapter-rocketmq-plugins
 ```
