@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 日志开启 -->
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+        <!-- 二级缓存开启 -->
+        <!--缓存配置的全局开关：如果这里设置成false，那么即便在映射器中配置开启也无济于事 -->
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+
+        <!--延时加载的全局开关 -->
+        <setting name="lazyLoadingEnabled" value="false" />
+        <!-- 是否允许单一语句返回多结果集 -->
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <!-- 使用列标签代替列名，需要兼容驱动 -->
+        <setting name="useColumnLabel" value="true" />
+        <!-- 允许JDBC自动生成主键，需要驱动兼容。如果设置为true，则这个设置强制使用自动生成主键，尽管一些驱动不能兼容但仍能正常工作 -->
+        <setting name="useGeneratedKeys" value="false" />
+        <!-- 指定MyBatis该如何自动映射列到字段或属性：NONE表示取消自动映射；PARTIAL表示只会自动映射，没有定义嵌套结果集和映射结果集；FULL会自动映射任意复杂的结果集，无论是否嵌套 -->
+        <setting name="autoMappingBehavior" value="PARTIAL" />
+
+        <!-- 配置默认的执行器：SIMPLE是普通的执行器；REUSE会重用预处理语句；BATCH会重用语句并执行批量更新 -->
+        <setting name="defaultExecutorType" value="SIMPLE" />
+        <!--设置超时时间：它决定驱动等待数据库响应的秒数,任何正整数-->
+        <setting name="defaultStatementTimeout" value="25"/>
+        <!--设置数据库驱动程序默认返回的条数限制，此参数可以重新设置,任何正整数 -->
+        <!--<setting name="defaultFetchSize" value="100" />-->
+        <!-- 允许在嵌套语句中使用分页（RowBounds） -->
+        <setting name="safeRowBoundsEnabled" value="false" />
+        <!-- 是否开启自动驼峰命名规则，即从a_example到aExample的映射 -->
+        <!--<setting name="mapUnderscoreToCamelCase" value="true" />-->
+        <!-- 本地缓存机制，防止循环引用和加速重复嵌套循环 -->
+        <setting name="localCacheScope" value="SESSION" />
+        <!-- 当没有为参数提供特定JDBC类型时，为空值指定JDBC类型。某些驱动需要指定列的JDBC类型，多数情况直接用一般类型即可，如NULL/VARCHAR/OTHER -->
+        <setting name="jdbcTypeForNull" value="OTHER" />
+        <!-- 指定触发延迟加载的方法，如equals/clone/hashCode/toString -->
+        <setting name="lazyLoadTriggerMethods" value="equals" />
+    </settings>
+
+        <!-- 对包进行扫描，可以批量进行别名设置，设置规则是：获取类名称，将其第一个字母变为小写 -->
+    <!--<typeAliases>
+        <typeAlias alias="user" type="com.qixin.example.entity.User"/>
+        <package name="com.qixin.example.entity"/>
+    </typeAliases>-->
+    <!-- 注册自定义handler，说明它作用的jdbcType和javaType -->
+    <!--<typeHandlers>
+        <typeHandler jdbcType="VARCHAR" javaType="date" handler="com.qixin.example.utils.handler.DateTypeHandler" />
+    </typeHandlers>-->
+    <!--<objectFactory type="com.qixin.example.utils.ObjectFactory">
+        <property name="prop1" value="value1"/>
+    </objectFactory>-->
+    <!--<plugins></plugins>
+    <properties resource="config/jdbc.properties" />
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}" />
+                <property name="url" value="${db.url}" />
+                <property name="username" value="${db.username}" />
+                <property name="password" value="${db.pwd}" />
+            </dataSource>
+        </environment>
+    </environments>-->
+    <!-- 映射器 -->
+    <!--<mappers>
+        <mapper resource="com/daily/mapper/UserMapper.xml" />
+        <mapper resource="com/daily/mapper/ProductMapper.xml" />
+    </mappers>-->
+</configuration>
