@@ -36,8 +36,9 @@ public class UsersApiHystrix implements FallbackFactory<UsersApi> {
             }
 
             @Override
-            public Long save(@RequestBody Users users) {
-                return null;
+            public int save(@RequestBody Users users) {
+
+                return 0;
             }
 
             @Override

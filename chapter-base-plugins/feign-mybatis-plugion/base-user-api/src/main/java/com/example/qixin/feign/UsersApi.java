@@ -39,7 +39,7 @@ public interface UsersApi {
             @ApiImplicitParam(name = "text", value = "正文", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "summary", value = "摘要", required = false, dataType = "String", paramType = "query"),
     })
-    Long save(@RequestBody Users users);
+    int save(@RequestBody Users users);
 
     @PutMapping("/updateById/{id}")
     @ApiOperation(value = "修改消息", notes = "根据参数修改消息")
