@@ -3,6 +3,7 @@ package com.example.qixin.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  * 版  权   所  有: 版权所有(C)2016-2026
  */
 @Data
+@NoArgsConstructor
 public class Users implements Serializable{
 
     private Long id;

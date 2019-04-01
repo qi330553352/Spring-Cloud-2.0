@@ -29,7 +29,7 @@ public class UsersService {
         return usersApi.findAll();
     }
 
-    public Long insertByBook(Users book) {
+    public Integer insertByBook(Users book) {
 
         return usersApi.save(book);
     }
