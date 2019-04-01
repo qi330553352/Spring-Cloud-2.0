@@ -1,7 +1,10 @@
 package com.example.qixin.repository;
 
 import com.example.qixin.entity.Users;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
 
 /**
  * 创 建 时 间: 2019/4/1
@@ -9,9 +12,10 @@ import org.springframework.data.repository.Repository;
  * 作       者: qixin
  * 版 权 所 有: 版权所有(C)2019-2029
  */
-public interface UsersRepository extends Repository<Users,Integer> {
+@Repository
+public interface UsersRepository extends JpaRepository<Users,Integer> {
 
-    Users findByUserName(String userName);
+    Users findByName(String name);
 
-    Users findByUserNameOrEmail(String username,String email);
+    Users findByNameAndCreateTime(String name,Date createTime);
 }

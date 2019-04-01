@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>base-user-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>base-user-api</name>
+    <name>base-user-api</name>
 	<packaging>jar</packaging>
 	<description>用户组件对外接口API</description>
 
@@ -14,6 +14,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+	</dependencies>
 
 	<distributionManagement>
 		<repository>

@@ -1,10 +1,12 @@
 package com.example.qixin.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,9 +17,12 @@ import java.util.Date;
  * 版  权   所  有: 版权所有(C)2016-2026
  */
 @Data
+@Entity
 @NoArgsConstructor
 public class Users implements Serializable{
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private Integer age;

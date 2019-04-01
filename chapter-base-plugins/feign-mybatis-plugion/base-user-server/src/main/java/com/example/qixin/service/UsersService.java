@@ -44,8 +44,8 @@ public class UsersService implements UsersApi {
     public List<Users> findAll() {
         //方法一：Spring Boot使用JDBC操作数据库
 //        return jdbcTemplate.query("SELECT * FROM user_info", new BeanPropertyRowMapper<>(Users.class));
-        return jdbcTemplate.query("SELECT * FROM user_info", new UsersRowMapper());
-//        return usersMapper.findAll();
+//        return jdbcTemplate.query("SELECT * FROM user_info", new UsersRowMapper());
+        return usersMapper.findAll();
     }
 
     public class UsersRowMapper implements RowMapper<Users> {
