@@ -78,13 +78,12 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
-    <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <!-- 使用AspectJ的AOP配置管理事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- 配置事务通知属性 -->
+    <!-- 注册事务通知 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <!-- 定义事务传播属性 -->
         <tx:attributes>
@@ -102,6 +101,7 @@
             <tx:method name="find*" propagation="REQUIRED" read-only="true" />
             <tx:method name="load*" propagation="REQUIRED" read-only="true" />
             <tx:method name="*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="buyFund" isolation="DEFAULT" rollback-for="com.bjsxt.exception.FundException" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
 

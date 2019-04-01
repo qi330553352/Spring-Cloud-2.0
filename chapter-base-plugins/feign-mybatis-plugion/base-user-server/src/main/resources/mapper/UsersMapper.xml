@@ -45,9 +45,40 @@
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM user_info
+        <where>
+            <if test="id !=null "> AND 1=1 </if>
+            <if test="name !=null and name != ''"> AND 1=1 </if>
+        </where>
         ORDER BY create_time DESC limit #{start},#{pageSize}
     </select>
     <update id="updateById">
-        UPDATE user_info SET `name`=#{users.name},age=#{users.age},create_time=#{users.createTime} WHERE id = #{id}
+        UPDATE user_info
+        <set>
+            <trim prefix="SET" suffixOverrides=",">
+                <if test="users.name!=null and users.name!=''">`name`=#{users.name},</if>
+                <if test="users.age!=null and users.age!=''">age=#{users.age},</if>
+                <if test="users.createTime!=null and users.createTime!=''">create_time=#{users.createTime},</if>
+            </trim>
+        </set>
+        <where>
+            <!-- 去掉多余的前缀 -->
+            <trim prefix="WHERE" prefixOverrides="AND | OR">
+                id=#{id}
+            </trim>
+        </where>
     </update>
+
+    <select id="findByIds" parameterType="java.util.List" resultType="com.example.qixin.entity.Users">
+        SELECT * FROM user_info
+        <where>
+            <foreach collection="ids" open="id in (" item="id" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="findByLikeName" parameterType="java.lang.String" resultType="com.example.qixin.entity.Users">
+        <bind name="pattern" value="'%${name}%'"/>
+        SELECT * FROM user_info WHERE `name` LIKE #{pattern}
+    </select>
 </mapper>

@@ -1,8 +1,10 @@
 package com.example.qixin.service;
 
+import com.example.qixin.entity.BaseResult;
 import com.example.qixin.entity.Users;
 import com.example.qixin.feign.UsersApi;
 import com.example.qixin.mapper.UsersMapper;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
