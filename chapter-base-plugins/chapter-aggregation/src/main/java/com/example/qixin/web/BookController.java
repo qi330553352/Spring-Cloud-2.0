@@ -3,6 +3,7 @@ package com.example.qixin.web;
 import com.example.qixin.entity.Users;
 import com.example.qixin.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class BookController {
      * 获取 Book 列表
      * 处理 "/book" 的 GET 请求，用来获取 Book 列表
      */
+    @Cacheable(value = "getBookList")
     @RequestMapping(method = RequestMethod.GET)
     public String getBookList(ModelMap map) {
         map.addAttribute("bookList",usersService.findAll());
