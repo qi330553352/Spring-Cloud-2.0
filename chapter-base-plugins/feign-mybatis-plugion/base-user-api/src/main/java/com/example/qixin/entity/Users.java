@@ -28,4 +28,9 @@ public class Users implements Serializable{
     private Integer age;
     private Date createTime;
 
+    public Users(String name, Integer age, Date createTime) {
+        this.name = name;
+        this.age = age;
+        this.createTime = createTime;
+    }
 }

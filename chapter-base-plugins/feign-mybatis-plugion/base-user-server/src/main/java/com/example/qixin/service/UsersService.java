@@ -5,6 +5,7 @@ import com.example.qixin.feign.UsersApi;
 import com.example.qixin.mapper.UsersMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,6 +29,8 @@ public class UsersService implements UsersApi {
 
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
