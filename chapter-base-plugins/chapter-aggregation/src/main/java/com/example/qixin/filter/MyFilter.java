@@ -1,5 +1,8 @@
 package com.example.qixin.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -14,6 +17,7 @@ import java.io.IOException;
  */
 public class MyFilter implements Filter  {
 
+    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Override
     public void init(FilterConfig arg0) throws ServletException {
 
@@ -22,7 +26,7 @@ public class MyFilter implements Filter  {
     @Override
     public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) srequest;
-        System.out.println("this is MyFilter,url :"+request.getRequestURI());
+        log.info("this is MyFilter,url :"+request.getRequestURI());
         filterChain.doFilter(srequest, sresponse);
     }
 

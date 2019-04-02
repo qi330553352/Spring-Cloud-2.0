@@ -91,6 +91,12 @@
 			<artifactId>commons-pool2</artifactId>
 		</dependency>
 
+        <!-- 使用Redis实现Session共享 -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
