@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file_sizes.xsl"?>
+<file_sizes>
+    <file_size>
+        <id>12</id>
+        <file_name>example</file_name>
+        <file_age>18</file_age>
+        <file_name>qixin</file_name>
+        <file_age>30</file_age>
+    </file_size>
+    <file_size>
+        <id>120</id>
+        <file_name>example2</file_name>
+        <file_age>182</file_age>
+    </file_size>
+</file_sizes>
